@@ -16,13 +16,29 @@ router.get('/planets', function(req, res) {
 
 router.get('/add-article', function(req, res) {
     const article = new Article({
-        title: "Sample article",
+        title: "Sample article II",
         author: "Adrian W",
-        description: "This is our sample article"
+        description: "This is our sample second article"
     })
     article.save().then(result => {
         res.send(result)
     }).catch((err) => console.error(err))
+})
+
+router.get('/article/:id', function(req, res) {
+    let id = req.params['id'];
+    console.log(id);
+    Article.findById(id)
+        .then(result => {
+            res.send(result)
+        }).catch((err) => console.error(err))
+})
+
+router.get('/articles', function(req, res) {
+    Article.find()
+        .then(result => {
+            res.send(result)
+        }).catch((err) => console.error(err))
 })
 
 module.exports = router;
