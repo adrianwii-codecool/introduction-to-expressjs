@@ -15,3 +15,7 @@ exports.index = function(req, res) {
         })
 
 }
+
+exports.planets = function(req, res) {
+    res.render('planets')
+}
