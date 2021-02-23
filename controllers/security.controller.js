@@ -1,13 +1,10 @@
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv").config();
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 exports.login = function(req, res, next) {
 
-    // const email = req.body.email;
-    console.log(req.body);
-    // const password = req.body.password;
-    // const email = "adrian.widlak@codecool.com";
-    // const email = "krzysztof.krawczyk@motorolasolutions.com";
+    const email = req.body.email;
+    const password = req.body.password;
 
     // check in database if given user exist
     /* User.find({email: email, password: password}).exec().then(function(response){
@@ -16,7 +13,7 @@ exports.login = function(req, res, next) {
     */
 
     // good practice: payload usally inlcudes email and user role
-    const user = { email: email }
+    const user = { email: email };
 
     // GENERATE JWT TOKEN
     const accessToken = generateAccessToken(user);
@@ -24,6 +21,5 @@ exports.login = function(req, res, next) {
 }
 
 function generateAccessToken(user) {
-    console.log(process.env.TOKEN_SECRET);
     return jwt.sign(user, process.env.TOKEN_SECRET);
 }
