@@ -13,6 +13,7 @@ router.get('/add-article', articleController.addArticle);
 router.get('/article/:id', articleController.article);
 router.get('/articles', authenticateToken, articleController.articles);
 router.post('/login', securityController.login);
+router.post('/refresh', securityController.refresh);
 
 function authenticateToken(req, res, next) {
     // Gather the jwt access token from the request header
